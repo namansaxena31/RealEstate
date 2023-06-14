@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact Us - Dubai Properties</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <style>
+    body {
+        background-color: aliceblue;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+   
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="box">
+        <h1>Contact Us</h1>
+        <form action="/contactsend" method="POST">
+          <label for="name">Name</label>
+          <input type="text" name="name" id="name" required>
+
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" required>
+
+          <label for="message">Message</label>
+          <textarea name="message" id="message" style = "resize: none; font-size: 1.2rem; height: 7.5rem; border-radius: 0.5rem ;padding: 0.5rem; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); border: none;" required></textarea>
+
+          <button type="submit">Send</button>
+        </form>
+      </div>
+      <div class="box" id="whatsapp-box">
+        <h2>WhatsApp Us</h2>
+        <p>Have a quick question? WhatsApp us now!</p>
+        <a href="https://wa.me/1234567890">
+          <img src="{{ url_for('static', filename='images/whatsapp.png') }}" alt="WhatsApp logo" width="32" height="32">
+          +1 (234) 567-890
+        </a>
+      </div>
+      <div class="box" id="home-link">
+        <a href="/">Go to Home</a>
+      </div>
+    </div>
+  </main>
+
+</body>
+</html>

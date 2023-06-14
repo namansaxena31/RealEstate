@@ -1,0 +1,90 @@
+/* Styles for the box containing the Terms and Conditions */
+.box {
+    margin: 50px auto;
+    max-width: 800px;
+    padding: 30px;
+    background-color: #fff;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .box h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .box p {
+    line-height: 1.6;
+    margin-bottom: 15px;
+  }
+  
+  .box ol {
+    margin-bottom: 15px;
+  }
+  
+  .box li {
+    margin-bottom: 10px;
+  }
+  
+  .accept-decline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .accept-decline label {
+    margin-right: 10px;
+  }
+  
+  .accept-decline input[type="checkbox"] {
+    margin-right: 5px;
+  }
+  
+  .btn-seller {
+    margin-left: 10px;
+    padding: 10px 15px;
+    background-color: #f5a623;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .btn-seller:hover {
+    background-color: #ef8f01;
+  }
+  
+  .btn-seller:active {
+    transform: scale(0.95);
+  }
+  
+  /* Styles for the "I accept" checkbox */
+  input[type="checkbox"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
+    border: 2px solid #ddd;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  input[type="checkbox"]:checked {
+    background-color: #f5a623;
+    border-color: #f5a623;
+  }
+  
+  input[type="checkbox"]:checked:after {
+    content: "\2713";
+    font-size: 1.2rem;
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  

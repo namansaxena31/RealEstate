@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In - Dubai Properties</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='signin.css') }}">
+  <style>
+    body {
+      background-color: #f0f7ff;
+    }
+    .error {
+      display: none;
+      margin-top: 0.5rem;
+      padding: 0.5rem;
+      background-color: #ff8c8c;
+      color: #fff;
+      border: 2px solid #ff4848;
+      border-radius: 0.5rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    
+    </nav>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="box">
+        <a href="/"><img src="{{ url_for('static', filename='images/logo_DP2.png') }}" alt="Dubai Properties" class="logo"></a>
+        <h1>Sign In</h1>
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            
+            {% for message in messages %}
+              <div class ="flash" style="color: red;">{{ message }}</div>
+            {% endfor %}
+            
+          {% endif %}
+        {% endwith %}
+        <form action="/signin" method="POST">
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" required>
+          <div class="error" id="email-error">Wrong email or password</div>
+
+          <label for="password">Password</label>
+          <input type="password" name="password" id="password" required>
+          <div class="error" id="password-error">Wrong email or password</div>
+
+          <button type="submit">Sign In</button>
+        </form>
+        <p>Don't have an account? <a href="/signup">Sign Up</a></p>
+        <p><a href="#">Forgot Password?</a></p>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Show error message if email or password is incorrect
+    const form = document.querySelector('form');
+    const email = document.querySelector('#email');
+    const password = document.querySelector('#password');
+    const emailError = document.querySelector('#email-error');
+    const passwordError = document.querySelector('#password-error');
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      emailError.style.display = 'none';
+      passwordError.style.display = 'none';
+      if (email.value === 'wrong@example.com') {
+        emailError.style.display = 'block';
+        email.focus();
+      } else if (password.value === 'wrongpassword') {
+        passwordError.style.display = 'block';
+        password.focus();
+      } else {
+        form.submit();
+      }
+    });
+  </script>
+</body>
+</html>

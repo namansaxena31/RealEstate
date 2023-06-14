@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Buy Properties - Dubai Properties</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='cart.css') }}">
+  
+  </head>
+  <body>
+    <header>
+      <div class="header__container">
+        <div class="header__logo">
+          <img src="{{ url_for('static', filename='images/logo_DP2.png') }}" alt="Dubai Properties Logo">
+        </div>
+        <nav class="header__nav">
+          <ul>
+            <li><a href="/buy">Buy</a></li>
+            <li><a href="/sell">Sell</a></li>
+            <li><a href="/cart">Manage Properties</a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/contactus">Contact Us</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    
+    <main class="main">
+      <section class="properties">
+        <h2>Shopping Cart</h2>
+        <div class="property">
+          <div class="property__image">
+            <img src="/prp1.jpg" alt="Property 1">
+          </div>
+          <div class="property__details">
+            <h3 class="property__name">Property Name 1</h3>
+            <p class="property__address">Address: 123 Main St, Dubai</p>
+            <p class="property__type">Property Type: Apartment</p>
+            <p class="property__bedrooms">Bedrooms: 3</p>
+            <p class="property__bathrooms">Bathrooms: 2</p>
+            <p class="property__size">Square Footage: 1500 sqft</p>
+            <p class="property__price">Price: AED 500,000</p>
+            <button class="btn--view-property">View Property</button>
+          </div>
+        </div>
+      </section>
+      
+          <section class="reviews">
+        <h2>Complete your order:</h2>
+  <div class="review">
+    <div class="review__rating">
+      <span class="fa fa-star checked"></span>
+      <span class="fa fa-star checked"></span>
+      <span class="fa fa-star checked"></span>
+      <span class="fa fa-star"></span>
+      <span class="fa fa-star"></span>
+    </div>
+    <div class="review__details">
+      <h3 style="padding-bottom: 5px;">Subtotal:</h3>
+      <p>Property 1</p>
+      <p>Price: AED 500,000</p>
+      <button class="btn--pay" style="background-color: #007bff;color: #fff;border: none;padding: 10px 20px;border-radius: 5px;cursor: pointer;transition: all 0.3s ease-in-out;margin-top: 10px;">Proceed to Pay</a></button>
+    </div>
+  </div>
+      </section>
+    </main>
+    
+    <footer class="footer">
+      <p>&copy; 2023 Dubai Properties. All rights reserved.</p>
+    </footer>
+  </body>
+</html>

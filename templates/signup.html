@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up - Dubai Properties</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='signup.css') }}">
+  <style>
+    body {
+      background-color: #f0f7ff;
+    }
+</style>
+</head>
+<body>
+  <header>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="box">
+        <a href="/"><img src="{{ url_for('static',filename='images/logo_DP2.png') }}" alt="Dubai Properties" class="logo"></a>
+        <h1>Sign Up</h1>
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            
+            {% for message in messages %}
+              <div class ="flash" style="color: red;">{{ message }}</div>
+            {% endfor %}
+            
+          {% endif %}
+        {% endwith %}
+        <form action="/signup" method="POST">
+          <label for="name">Name</label>
+          <input type="text" name="name" id="name" required>
+
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" required>
+
+          <label for="password">Password</label>
+          <input type="password" name="password" id="password" required>
+
+          <label for="confirm-password">Confirm Password</label>
+          <input type="password" name="confirm-password" id="confirm-password" required>
+
+          <button type="submit">Sign Up</button>
+        </form>
+        <p>Already have an account? <a href="/signin">Sign In</a></p>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

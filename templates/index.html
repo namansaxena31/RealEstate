@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dubai Properties</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
+    <!-- navbar -->
+    <script>
+      var prevScrollpos = window.pageYOffset;
+      window.onscroll = function() {
+        var currentScrollPos = window.pageYOffset;
+        if (prevScrollpos > currentScrollPos) {
+          document.querySelector("header").style.top = "0";
+        } else {
+          document.querySelector("header").style.top = "-80px";
+        }
+        prevScrollpos = currentScrollPos;
+      }
+    </script>
+    
+    
+</head>
+<body>
+  <header>
+      
+<nav>
+  <ul class="left">
+      <li><a href="/">Home</a></li>
+      <li><a href="/contactus">Contact Us</a></li>
+      <a href="/signin" class="nav-signin">Sign In</a>
+  </ul>
+  <a href="/" class="logo">
+    <img src="{{ url_for('static', filename='images/logo_DP2.png') }}" alt="Dubai Properties Logo">
+  </a>
+  <ul class="right">
+      <li><a href="/buy">Buy</a></li>
+      <li><a href="/sell">Sell</a></li>
+      <!-- <li><a href="/cart">Manage Properties</a></li> -->
+      <div class="dropdown">
+        <div class="dropdown__header">
+          <img src="{{url_for('static',filename='images/user2.png')}}" alt="" style="padding-right: 5px;">{{message}}
+        </div>
+        <div class="dropdown__content">
+          <a href="/" onclick="logoutRequest()">Logout</a>
+        </div>
+      </div>
+  </ul>
+</nav>
+
+  </header>
+  <section class="hero">
+      <h1>Welcome to Dubai Properties</h1>
+      <p>Find your dream property in Dubai today</p>
+      <div class="search-bar">
+        <input type="text" placeholder="Search for properties...">
+        <button>
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+  </section>
+
+  <section class="sold-properties">
+    <h3>We have sold over</h3> <br><h2><span id="sold-count">0000</span> + <br></h2><h3>properties</h3>
+  </section>
+  <!--  script sold count--------------------------------------------------------------- -->
+  <script>
+    function rollUp(element, from, to, duration) {
+      var start = new Date().getTime();
+      var timer = setInterval(function() {
+        var time = new Date().getTime() - start;
+        var value = Math.ceil(easeInOutQuad(time, from, to - from, duration));
+        element.innerHTML = value.toLocaleString();
+        if (time >= duration) {
+          clearInterval(timer);
+        }
+      }, 10);
+    }
+  
+    function easeInOutQuad(t, b, c, d) {
+      t /= d/2;
+      if (t < 1) return c/2*t*t + b;
+      t--;
+      return -c/2 * (t*(t-2) - 1) + b;
+    }
+  
+    var soldCount = document.getElementById("sold-count");
+    rollUp(soldCount, 0000, 7000, 3000);
+  </script>
+  <!------------------------------------------------------------------->
+  
+<section class="recommendation">
+    <h2>Get Home Recommendations</h2>
+    <p>Sign in to get personalized recommendations on properties that match your preferences.</p>
+    <a href="/signin"><button>Sign In</button></a>
+  </div>
+</section>
+<section class="buy-sell">
+  <div class="buy-homes">
+    <img src="{{ url_for('static', filename='images/buy_a house.jpg') }}" alt="Buy Home Image" class="buy-home-image">
+    <h3>Buy Homes</h3>
+    <p>Find your place with an immersive photo 
+      experience and the most listings, including 
+      things you won't find anywhere else.</p>
+    <a href="/buy" class="cta">Buy</a>
+</div>
+    <div class="sell-homes">
+      <img src="{{ url_for('static', filename='images/sellhouse.jpg') }}" alt="Buy Home Image" class="buy-home-image">
+        <h3>Sell Homes</h3>
+        <p>No matter what path you take to sell your 
+          home, we can help you navigate a 
+          successful sale.</p>
+        <a href="/sell" class="cta">Sell</a>
+    </div>
+</section>
+<section class="social-media">
+    <h3>Follow us on social media</h3>
+    <p>
+        <a href="#">Facebook</a> | <a href="#">Twitter</a> | <a href="#">Instagram</a>
+    </p>
+</section>
+
+  <section class="properties">
+      <!-- Add your property listings here -->
+  </section>
+  <footer>
+      <p>&copy; 2023 Dubai Properties. All rights reserved.</p>
+  </footer>
+
+  <script>
+
+    function logoutRequest() {
+      // create a new POST request
+      var xhr = new XMLHttpRequest();
+  
+      // set up the request
+      xhr.open('POST', '/logout', true);
+
+      // set the content type header to indicate JSON data is being sent
+      xhr.setRequestHeader('Content-Type', 'application/json');
+
+      // send the request
+      xhr.send();
+
+      window.location.reload();
+    
+    }
+
+  //   document.getElementById('dropdown__content').addEventListener('click', function() {
+  //   // create a new POST request
+  //   var xhr = new XMLHttpRequest();
+  
+  //   // set up the request
+  //   xhr.open('POST', '/logout', true);
+  
+  //   // set the content type header to indicate JSON data is being sent
+  //   xhr.setRequestHeader('Content-Type', 'application/json');
+  
+  //   // send the request
+  //   xhr.send();
+  // });
+  </script>
+
+</body>
+</html>
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% for category, message2 in messages %}
+      <script>
+        document.addEventListener("DOMContentLoaded", function(event) {
+          alert('{{ message2 }}');
+        });
+      </script>
+  {% endfor %}
+{% endwith %}
+

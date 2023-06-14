@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Buy Properties - Dubai Properties</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='buy.css') }}">
+  </head>
+  <body>
+    <header>
+      <div class="header__container">
+        <div class="header__logo">
+          <a href="/"><img src="{{ url_for('static', filename='images/logo_DP2.png') }}" alt="Dubai Properties Logo"></a>
+        </div>
+        <nav class="header__nav">
+          <ul>
+            <li><a href="/buy">Buy</a></li>
+            <li><a href="/sell">Sell</a></li>
+            <!-- <li><a href="/cart">Manage Properties</a></li> -->
+            <li><a href="/">Home</a></li>
+            <li><a href="/contactus">Contact Us</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+<main class="main">
+  <section class="filters">
+    <h2>Filters</h2>
+    <form action="/buy" method ="post">
+      <div class="filter-section">
+        <h3 style="padding-bottom: 10px;">Neighborhood</h3>
+        <div class="checkbox">
+          <input type="checkbox" id="c1" name="c1">
+          <label for="marina">Dubai Marina</label>
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" id="c2" name="c2">
+          <label for="bur">Bur Dubai</label>
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" id="c3" name="c3">
+          <label for="deira">Deira</label>
+        </div>
+        <div class="checkbox" style="padding-bottom: 5px;">
+          <input type="checkbox" id="c4" name="c4">
+          <label for="jumeirah">Jumeirah</label>
+        </div>
+        <div class="checkbox" style="padding-bottom: 5px;">
+          <input type="checkbox" id="c5" name="c5">
+          <label for="downtown">Downtown</label>
+        </div>
+      </div>
+
+      <div class="filter-section">
+        <label for="price">Price:</label>
+        <input type="number" id="min-price" name="min-price" placeholder="min" style="width: 3.5rem;" value=1>
+        <input type="number" id="max-price" name="max-price" placeholder="max" style="width: 3.5rem;" value =9999999>
+      </div>
+      <div class="filter-section">
+        <label for="area">Area:</label>
+        <input type="number" id="min-area" name="min-area" placeholder="min" style="width: 3.5rem;" value=1>
+        <input type="number" id="max-area" name="max-area" placeholder="max" style="width: 3.5rem;" value =9999999>
+      </div>
+
+      <div class="filter-section">
+        <div class = "filters__amenities"><h3>Amenities</h3></div>
+        
+        <div class="checkbox">
+          <input type="checkbox" id="cb1" name="cb1">
+          <label for="balcony">Balcony</label>
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" id="cb2" name="cb2">
+          <label for="private-gym">Private Gym</label>
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" id="cb3" name="cb3">
+          <label for="private-garden">Private Garden</label>
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" id="cb4" name="cb4">
+          <label for="covered-parking">Covered Parking</label>
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" id="cb5" name="cb5">
+          <label for="private-pool">Private Pool </label>
+        </div>
+    </div>
+
+    <button type = "submit" value="Submit" class="search-button">Search</button>
+  </form>
+</section>
+
+
+<section class="properties">
+  <h2>Properties List</h2>
+
+  {% for row in results %}
+    {% if loop.index <= 3%}
+  <div class="property">
+    <div class="property__image">
+      <img src="{{ url_for('static', filename=row[13]) }}" alt="Property 1" width="260" height="200">
+    </div>
+    <div class="property__details">
+      <h3 class="property__name">{{row[1]}}</h3>
+      <p class="property__address">Address: {{row[2]}}</p>
+      <p class="property__bedrooms">Bedrooms: {{row[5]}}</p>
+      <p class="property__bathrooms">Bathrooms: {{row[6]}}</p>
+      <p class="property__size">Square Footage: {{row[4]}} sqft</p>
+      <p class="property__price">Price: AED {{row[12]}}</p>
+      <form action="/buyproperty" method ="post">
+      <input type="hidden" name="p_id" value="{{row[0]}}">
+      <button class="btn--view-property" type="submit">Buy Property</button>
+      </form>
+    </div>
+  </div>
+  
+
+  <!-- <div class="property">
+    <div class="property__image">
+      <img src="{{ url_for('static', filename='images/prp2.jpg') }}" alt="Property 2">
+    </div>
+    <div class="property__details">
+      <h3 class="property__name">{{row[1]}}</h3>
+      <p class="property__address">Address: {{row[2]}}</p>
+      <p class="property__bedrooms">Bedrooms: {{row[5]}}</p>
+      <p class="property__bathrooms">Bathrooms: {{row[6]}}</p>
+      <p class="property__size">Square Footage: {{row[4]}} sqft</p>
+      <p class="property__price">Price: AED {{row[12]}}</p>
+      <button class="btn--view-property">View Property</button>
+    </div>
+  </div>
+
+  <div class="property">
+    <div class="property__image">
+      <img src="{{ url_for('static', filename='images/prp3.jpg') }}" alt="Property 3">
+    </div>
+    <div class="property__details">
+      <h3 class="property__name">Property Name 3</h3>
+      <p class="property__address">Address: 789 Third St, Dubai</p>
+      <p class="property__type">Property Type: Office Space</p>
+      <p class="property__bedrooms">Bedrooms: N/A</p>
+      <p class="property__bathrooms">Bathrooms: N/A</p>
+      <p class="property__size">Square Footage: 2000 sqft</p>
+      <p class="property__price">Price: AED 800,000</p>
+      <button class="btn--view-property">View Property</button>
+    </div>
+  </div> -->
+  {% endif %}
+  {% endfor %}
+<footer class="footer">
+<p>&copy; 2023 Dubai Properties. All rights reserved.</p>
+</footer>
+</body>
+</html>
